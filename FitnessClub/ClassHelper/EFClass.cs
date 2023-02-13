@@ -14,3 +14,9 @@ namespace FitnessClub.ClassHelper
        public static Entities context { get; set; } = new Entities();
     }
 }
+
+//
+//
+//
+//
+//
