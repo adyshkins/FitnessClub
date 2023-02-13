@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3f78f68b33e84a6ba05b1770fbb45d72" Name="Diagram1" ZoomLevel="132">
+        <EntityTypeShape EntityType="Ustinov3usp919FitnessСlubModel.Client" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="Ustinov3usp919FitnessСlubModel.Employee" Width="1.5" PointX="3" PointY="5.625" />
+        <EntityTypeShape EntityType="Ustinov3usp919FitnessСlubModel.Gender" Width="1.5" PointX="0.75" PointY="1.75" />
+        <EntityTypeShape EntityType="Ustinov3usp919FitnessСlubModel.Order" Width="1.5" PointX="5.25" PointY="1.5" />
+        <EntityTypeShape EntityType="Ustinov3usp919FitnessСlubModel.Service" Width="1.5" PointX="5.75" PointY="4.75" />
+        <EntityTypeShape EntityType="Ustinov3usp919FitnessСlubModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Ustinov3usp919FitnessСlubModel.Trainer" Width="1.5" PointX="7.75" PointY="3.75" />
+        <EntityTypeShape EntityType="Ustinov3usp919FitnessСlubModel.User" Width="1.5" PointX="5.75" PointY="7.75" />
+        <AssociationConnector Association="Ustinov3usp919FitnessСlubModel.FK_Client_Gender" />
+        <AssociationConnector Association="Ustinov3usp919FitnessСlubModel.FK_Order_Client" />
+        <AssociationConnector Association="Ustinov3usp919FitnessСlubModel.FK_Order_Employee" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
