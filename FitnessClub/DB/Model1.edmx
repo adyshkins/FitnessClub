@@ -9,15 +9,16 @@
           <Key>
             <PropertyRef Name="IDClient" />
           </Key>
-          <Property Name="IDClient" Type="int" Nullable="false" />
-          <Property Name="Name" Type="nchar" MaxLength="100" Nullable="false" />
-          <Property Name="patronymic" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IDClient" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="100" />
           <Property Name="DateOfBirth" Type="date" Nullable="false" />
           <Property Name="Phone" Type="nchar" MaxLength="10" />
           <Property Name="Address" Type="nvarchar" MaxLength="100" />
-          <Property Name="PassportSeries" Type="nvarchar" MaxLength="100" />
-          <Property Name="PassportNumber" Type="nchar" MaxLength="10" />
+          <Property Name="PassportSeries" Type="char" MaxLength="4" />
+          <Property Name="PassportNumber" Type="char" MaxLength="6" />
           <Property Name="IDGenger" Type="int" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -250,7 +251,7 @@
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
           <Property Type="Binary" Name="definition" Nullable="true" />
@@ -266,15 +267,16 @@
           <Key>
             <PropertyRef Name="IDClient" />
           </Key>
-          <Property Name="IDClient" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
-          <Property Name="patronymic" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IDClient" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Patronymic" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Phone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="PassportSeries" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="PassportNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="PassportSeries" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="PassportNumber" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
           <Property Name="IDGenger" Type="Int32" Nullable="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Gender" Relationship="Ustinov3usp919FitnessСlubModel.FK_Client_Gender" FromRole="Client" ToRole="Gender" />
           <NavigationProperty Name="Order" Relationship="Ustinov3usp919FitnessСlubModel.FK_Order_Client" FromRole="Client" ToRole="Order" />
         </EntityType>
@@ -380,7 +382,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -413,14 +415,15 @@
           <EntitySetMapping Name="Client">
             <EntityTypeMapping TypeName="Ustinov3usp919FitnessСlubModel.Client">
               <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="IDGenger" ColumnName="IDGenger" />
                 <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
                 <ScalarProperty Name="PassportSeries" ColumnName="PassportSeries" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
-                <ScalarProperty Name="patronymic" ColumnName="patronymic" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="IDClient" ColumnName="IDClient" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -494,7 +497,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

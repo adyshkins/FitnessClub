@@ -15,14 +15,15 @@ namespace FitnessClub.DB
     public partial class Client
     {
         public int IDClient { get; set; }
-        public string Name { get; set; }
-        public string patronymic { get; set; }
+        public string FirstName { get; set; }
+        public string Patronymic { get; set; }
         public System.DateTime DateOfBirth { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
         public string PassportSeries { get; set; }
         public string PassportNumber { get; set; }
         public int IDGenger { get; set; }
+        public string LastName { get; set; }
     
         public virtual Gender Gender { get; set; }
         public virtual Order Order { get; set; }

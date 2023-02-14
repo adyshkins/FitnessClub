@@ -50,9 +50,12 @@ namespace FitnessClub.Windows
                 MessageBox.Show("Пользователь не найден");
             }
         }
+
+        private void TextBlock_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            RegistrationClientWindow registrationClientWindow = new RegistrationClientWindow();
+            registrationClientWindow.ShowDialog();
+        }
     }
 }
 
-////
-////
-////
