@@ -56,9 +56,11 @@
             <PropertyRef Name="IDService" />
           </Key>
           <Property Name="IDService" Type="int" Nullable="false" />
-          <Property Name="NameService" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="PriceService" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="DateService" Type="date" />
+          <Property Name="NameService" Type="nvarchar" MaxLength="100" />
+          <Property Name="PriceService" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="TimeService" Type="int" />
+          <Property Name="Description" Type="nvarchar" MaxLength="250" />
+          <Property Name="Photo" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -313,9 +315,11 @@
             <PropertyRef Name="IDService" />
           </Key>
           <Property Name="IDService" Type="Int32" Nullable="false" />
-          <Property Name="NameService" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="PriceService" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="DateService" Type="DateTime" Precision="0" />
+          <Property Name="NameService" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PriceService" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
+          <Property Name="TimeService" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -458,7 +462,9 @@
           <EntitySetMapping Name="Service">
             <EntityTypeMapping TypeName="Ustinov3usp919FitnessСlubModel.Service">
               <MappingFragment StoreEntitySet="Service">
-                <ScalarProperty Name="DateService" ColumnName="DateService" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="TimeService" ColumnName="TimeService" />
                 <ScalarProperty Name="PriceService" ColumnName="PriceService" />
                 <ScalarProperty Name="NameService" ColumnName="NameService" />
                 <ScalarProperty Name="IDService" ColumnName="IDService" />

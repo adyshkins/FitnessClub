@@ -16,7 +16,9 @@ namespace FitnessClub.DB
     {
         public int IDService { get; set; }
         public string NameService { get; set; }
-        public string PriceService { get; set; }
-        public Nullable<System.DateTime> DateService { get; set; }
+        public decimal PriceService { get; set; }
+        public Nullable<int> TimeService { get; set; }
+        public string Description { get; set; }
+        public byte[] Photo { get; set; }
     }
 }
