@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="ServiceListWindow" 
         Height="800" 
-        Width="800">
+        Width="1200">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -67,5 +67,15 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+        <Button x:Name="BtnAddService"
+                Content="Добавить услугу"
+                Grid.Row="3"
+                Width="250"
+                Height="40"
+                FontSize="22"
+                HorizontalAlignment="Right"
+                Margin="20 0"
+                Click="BtnAddService_Click"/>
     </Grid>
 </Window>

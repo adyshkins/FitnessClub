@@ -38,5 +38,13 @@ namespace FitnessClub.Windows
 
             lvService.ItemsSource = serviceList;
         }
+
+        private void BtnAddService_Click(object sender, RoutedEventArgs e)
+        {
+            AddEditServiceWindow addEditServiceWindow = new AddEditServiceWindow();
+            addEditServiceWindow.ShowDialog();
+
+            GetServiceList();
+        }
     }
 }

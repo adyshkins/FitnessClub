@@ -64,12 +64,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Windows\AddEditServiceWindow.xaml.cs">
+      <DependentUpon>AddEditServiceWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\RegistrationClientWindow.xaml.cs">
       <DependentUpon>RegistrationClientWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\ServiceListWindow.xaml.cs">
       <DependentUpon>ServiceListWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Windows\AddEditServiceWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\AuthWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
