@@ -26,10 +26,55 @@ namespace FitnessClub.Windows
     public partial class AddEditServiceWindow : Window
     {
         private string pathImage = null;
+        private bool isEdit = false;
+        private Service editService;
 
         public AddEditServiceWindow()
         {
+            // конструктор для добавления
             InitializeComponent();
+
+            isEdit = false;
+        }
+
+        public AddEditServiceWindow(Service service)
+        {
+            // конструктор для редактирования
+
+            InitializeComponent();
+
+
+            // Изменения заголовка и текста кнопки
+            TblockTitle.Text = "Редактирование услуги";
+            BtnAddEditService.Content = "Сохранить изменения";
+
+            // Заполнение текстовых полей 
+            TbNameService.Text = service.NameService.ToString();
+            TbPriceService.Text = service.PriceService.ToString();
+            TbTimeService.Text = service.TimeService.ToString();
+            TbDescription.Text = service.Description.ToString();
+
+            // вывод изображения
+
+            if (service.Photo != null)
+            {
+                using (MemoryStream stream = new MemoryStream(service.Photo))
+                {
+                    BitmapImage bitmapImage = new BitmapImage();
+                    bitmapImage.BeginInit();
+                    bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmapImage.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
+                    bitmapImage.StreamSource = stream;
+                    bitmapImage.EndInit();
+
+                    ImgService.Source = bitmapImage;
+                }
+            }
+           
+
+            isEdit = true;
+            editService = service;
+
         }
 
         private void BtnChooseImage_Click(object sender, RoutedEventArgs e)
@@ -47,19 +92,36 @@ namespace FitnessClub.Windows
         private void BtnAddEditService_Click(object sender, RoutedEventArgs e)
         {
             // валидация
+            if (isEdit == true)
+            {
+                // изменение
+                editService.NameService = TbNameService.Text;
+                editService.PriceService = Convert.ToDecimal(TbPriceService.Text);
+                editService.TimeService = Convert.ToInt32(TbTimeService.Text);
+                editService.Description = TbDescription.Text;
+                if (pathImage != null)
+                {
+                    editService.Photo = File.ReadAllBytes(pathImage);
+                }
+                EFClass.context.SaveChanges();
+                MessageBox.Show("Услуга успешно изменена");
 
-            // добавление
-            Service service = new Service();
-            service.NameService = TbNameService.Text;
-            service.PriceService = Convert.ToDecimal(TbPriceService.Text);
-            service.TimeService = Convert.ToInt32(TbTimeService.Text);
-            service.Description = TbDescription.Text;
-            service.Photo = File.ReadAllBytes(pathImage);
+            }
+            else
+            {
+                // добавление
+                Service service = new Service();
+                service.NameService = TbNameService.Text;
+                service.PriceService = Convert.ToDecimal(TbPriceService.Text);
+                service.TimeService = Convert.ToInt32(TbTimeService.Text);
+                service.Description = TbDescription.Text;
+                service.Photo = File.ReadAllBytes(pathImage);
 
-            EFClass.context.Service.Add(service);
-            EFClass.context.SaveChanges();
-            MessageBox.Show("Услуга успешно добавлена");
-
+                EFClass.context.Service.Add(service);
+                EFClass.context.SaveChanges();
+                MessageBox.Show("Услуга успешно добавлена");
+            }
+            
             this.Close();
         }
     }

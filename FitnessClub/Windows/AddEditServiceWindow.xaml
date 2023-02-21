@@ -10,7 +10,8 @@
         Width="500">
     <Grid>
         <StackPanel>
-            <TextBlock Text="Добавление услуги"
+            <TextBlock x:Name="TblockTitle" 
+                       Text="Добавление услуги"
                        FontSize="30"
                        HorizontalAlignment="Center"
                        Margin="0 30 0 0"/>

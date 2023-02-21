@@ -46,5 +46,22 @@ namespace FitnessClub.Windows
 
             GetServiceList();
         }
+
+        private void BtnEditProduct_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            if (button == null)
+            {
+                return;
+            }
+
+            var service = button.DataContext as Service;
+
+
+            AddEditServiceWindow addEditServiceWindow = new AddEditServiceWindow(service);
+            addEditServiceWindow.ShowDialog();
+
+            GetServiceList();
+        }
     }
 }
