@@ -23,10 +23,19 @@ namespace FitnessClub.Windows
     /// </summary>
     public partial class ServiceListWindow : Window
     {
+        List<string> listSort = new List<string>()
+        {
+            "По умолчанию",
+            "По названию (по возрастанию)",
+            "По названию (по убыванию)"
+        };
         public ServiceListWindow()
         {
             InitializeComponent();
             GetServiceList();
+
+            CmbSort.ItemsSource = listSort;
+            CmbSort.SelectedIndex = 0;
 
         }
 
@@ -38,9 +47,26 @@ namespace FitnessClub.Windows
 
             // фильтрация, поиск и сортировку
 
-
             //поиск
             serviceList = serviceList.Where(i => i.NameService.ToLower().Contains(TbSearch.Text.ToLower())).ToList();
+
+
+            // сортировка
+            switch (CmbSort.SelectedIndex)
+            {
+                case 0:
+                    serviceList = serviceList.OrderBy(i => i.IDService).ToList();
+                    break;
+                case 1:
+                    serviceList = serviceList.OrderBy(i => i.NameService).ToList();
+                    break;
+                case 2:
+                    serviceList = serviceList.OrderByDescending(i => i.NameService).ToList();
+                    break;
+                default:
+                    serviceList = serviceList.OrderBy(i => i.IDService).ToList();
+                    break;
+            }
 
             lvService.ItemsSource = serviceList;
         }
@@ -72,6 +98,11 @@ namespace FitnessClub.Windows
 
         private void TbSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
+            GetServiceList();
+        }
+
+        private void CmbSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {          
             GetServiceList();
         }
     }
