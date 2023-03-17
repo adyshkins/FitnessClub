@@ -79,6 +79,7 @@ namespace FitnessClub.Windows
             GetServiceList();
         }
 
+        // редактирование
         private void BtnEditProduct_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
@@ -104,6 +105,26 @@ namespace FitnessClub.Windows
         private void CmbSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {          
             GetServiceList();
+        }
+
+        private void BtnCartService_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            if (button == null)
+            {
+                return;
+            }
+
+            var service = button.DataContext as Service;
+
+            ClassHelper.CartClass.serviceCart.Add(service);
+            MessageBox.Show($"Услуга {service.NameService.ToString()} добавлена");
+        }
+
+        private void BtnGoToCart_Click(object sender, RoutedEventArgs e)
+        {
+            CartWindow cartWindow = new CartWindow();
+            cartWindow.ShowDialog();
         }
     }
 }
