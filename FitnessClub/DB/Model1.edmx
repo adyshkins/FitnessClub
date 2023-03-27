@@ -51,6 +51,13 @@
           <Property Name="IDOrder" Type="int" />
           <Property Name="Quantity" Type="nvarchar" MaxLength="100" />
         </EntityType>-->
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="IdRole" />
+          </Key>
+          <Property Name="IdRole" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameRole" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
         <EntityType Name="Service">
           <Key>
             <PropertyRef Name="IDService" />
@@ -96,6 +103,7 @@
           <Property Name="Login" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="IdRole" Type="int" />
         </EntityType>
         <Association Name="FK_Client_Gender">
           <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
@@ -145,6 +153,18 @@
         <!--Ошибки, обнаруженные при создании:
 ошибка 6004: Невозможно найти таблицу "Ustinov3usp919FitnessСlub.dbo.TrainerService", на которую ссылается связь.
         <Association Name="FK_TrainerService_Trainer" />-->
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="IdRole" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="IdRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -181,6 +201,7 @@
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Trainer" EntityType="Self.Trainer" Schema="dbo" store:Type="Tables" />
@@ -196,6 +217,10 @@
           <AssociationSet Name="FK_Order_Employee" Association="Self.FK_Order_Employee">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -237,6 +262,7 @@
           <EntitySet Name="Employee" EntityType="Ustinov3usp919FitnessСlubModel.Employee" />
           <EntitySet Name="Gender" EntityType="Ustinov3usp919FitnessСlubModel.Gender" />
           <EntitySet Name="Order" EntityType="Ustinov3usp919FitnessСlubModel.Order" />
+          <EntitySet Name="Role" EntityType="Ustinov3usp919FitnessСlubModel.Role" />
           <EntitySet Name="Service" EntityType="Ustinov3usp919FitnessСlubModel.Service" />
           <EntitySet Name="sysdiagrams" EntityType="Ustinov3usp919FitnessСlubModel.sysdiagrams" />
           <EntitySet Name="Trainer" EntityType="Ustinov3usp919FitnessСlubModel.Trainer" />
@@ -252,6 +278,10 @@
           <AssociationSet Name="FK_Order_Employee" Association="Ustinov3usp919FitnessСlubModel.FK_Order_Employee">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="Ustinov3usp919FitnessСlubModel.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
           </AssociationSet>
           </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
@@ -310,6 +340,14 @@
           <NavigationProperty Name="Client" Relationship="Ustinov3usp919FitnessСlubModel.FK_Order_Client" FromRole="Order" ToRole="Client" />
           <NavigationProperty Name="Employee" Relationship="Ustinov3usp919FitnessСlubModel.FK_Order_Employee" FromRole="Order" ToRole="Employee" />
         </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="IdRole" />
+          </Key>
+          <Property Name="IdRole" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameRole" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="Ustinov3usp919FitnessСlubModel.FK_User_Role" FromRole="Role" ToRole="User" />
+        </EntityType>
         <EntityType Name="Service">
           <Key>
             <PropertyRef Name="IDService" />
@@ -349,6 +387,8 @@
           <Property Name="Login" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IdRole" Type="Int32" />
+          <NavigationProperty Name="Role" Relationship="Ustinov3usp919FitnessСlubModel.FK_User_Role" FromRole="User" ToRole="Role" />
         </EntityType>
         <Association Name="FK_Client_Gender">
           <End Type="Ustinov3usp919FitnessСlubModel.Gender" Role="Gender" Multiplicity="1" />
@@ -383,6 +423,18 @@
             </Principal>
             <Dependent Role="Order">
               <PropertyRef Name="IDEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Type="Ustinov3usp919FitnessСlubModel.Role" Role="Role" Multiplicity="0..1" />
+          <End Type="Ustinov3usp919FitnessСlubModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="IdRole" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="IdRole" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -459,6 +511,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="Ustinov3usp919FitnessСlubModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="NameRole" ColumnName="NameRole" />
+                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Service">
             <EntityTypeMapping TypeName="Ustinov3usp919FitnessСlubModel.Service">
               <MappingFragment StoreEntitySet="Service">
@@ -496,6 +556,7 @@
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="Ustinov3usp919FitnessСlubModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Login" ColumnName="Login" />

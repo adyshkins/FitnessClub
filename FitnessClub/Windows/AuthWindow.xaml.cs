@@ -40,7 +40,10 @@ namespace FitnessClub.Windows
                 .FirstOrDefault();
 
             if (authUser != null)
-            { 
+            {
+                // сохраняем пользователя
+                ClassHelper.UserClass.AuthUser = authUser;
+
                 // переход на нужное окно
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();

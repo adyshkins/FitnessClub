@@ -22,7 +22,8 @@ namespace FitnessClub
     {
         public MainWindow()
         {
-            InitializeComponent();            
+            InitializeComponent();
+            TxtNameUser.Text = "Пользователь " + ClassHelper.UserClass.AuthUser.Login + " " + ClassHelper.UserClass.AuthUser.Role.NameRole;
         }
     }
 }
